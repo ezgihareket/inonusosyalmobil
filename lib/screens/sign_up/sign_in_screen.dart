@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:insta_ui_kit/config/colors.dart';
 import 'package:insta_ui_kit/config/styles.dart';
+import 'package:insta_ui_kit/pages/home_page.dart';
 import 'package:insta_ui_kit/screens/sign_up/sign_up_screen.dart';
 
 import '../main_home.dart';
@@ -61,7 +62,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   textAlignVertical: TextAlignVertical.center,
                   validator: (String val) {
                     if (val.trim().isEmpty) {
-                      return 'Kullanıcı Adı/Email Gerekli';
+                      return 'Email Gerekli';
                     }
                     return null;
                   },
@@ -77,7 +78,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     helperStyle: kInputHintStyle,
                     errorStyle: kInputHintStyle,
                     hintStyle: kInputHintStyle,
-                    labelText: 'Kullanıcı Adı veya Email',
+                    labelText: 'İnönü Mail',
                     labelStyle: kInputHintStyle,
                     fillColor: kWhite,
                     filled: true,
@@ -138,7 +139,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => SignUpScreen(),
+                          builder: (context) => MainHome(),
                         ),
                       );
                     },

@@ -8,18 +8,17 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:insta_ui_kit/config/colors.dart';
 import 'package:insta_ui_kit/models/review.dart';
-import 'package:insta_ui_kit/models/store.dart';
-import 'package:insta_ui_kit/widgets/store/store_product_item.dart';
+import 'package:insta_ui_kit/models/group.dart';
 
-class StoreProductScreen extends StatefulWidget {
-  final StoreProduct storeProduct;
+class GroupProductScreen extends StatefulWidget {
+  final GroupProduct groupProduct;
 
-  const StoreProductScreen({Key key, this.storeProduct}) : super(key: key);
+  const GroupProductScreen({Key key, this.groupProduct}) : super(key: key);
   @override
-  _StoreProductScreenState createState() => _StoreProductScreenState();
+  _GroupProductScreenState createState() => _GroupProductScreenState();
 }
 
-class _StoreProductScreenState extends State<StoreProductScreen> {
+class _GroupProductScreenState extends State<GroupProductScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -77,7 +76,7 @@ class _StoreProductScreenState extends State<StoreProductScreen> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20),
                               child: Image.asset(
-                                widget.storeProduct.image,
+                                widget.groupProduct.image,
                                 fit: BoxFit.cover,
                                 width: double.infinity,
                               ),
@@ -128,7 +127,7 @@ class _StoreProductScreenState extends State<StoreProductScreen> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 15, vertical: 0),
                             child: Text(
-                              widget.storeProduct.name,
+                              widget.groupProduct.name,
                               style: GoogleFonts.muli(
                                 color: Colors.black,
                                 fontSize: 16.0,
@@ -143,7 +142,7 @@ class _StoreProductScreenState extends State<StoreProductScreen> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 15, vertical: 0),
                             child: Text(
-                              widget.storeProduct.price,
+                              widget.groupProduct.description,
                               style: GoogleFonts.muli(
                                 color: Colors.black,
                                 fontSize: 16.5,
@@ -197,7 +196,7 @@ class _StoreProductScreenState extends State<StoreProductScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            '${widget.storeProduct.rating} ★',
+                            '${widget.groupProduct.rating} ★',
                             style: GoogleFonts.muli(
                               color: Colors.green.shade700,
                               fontSize: 15.0,

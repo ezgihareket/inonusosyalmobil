@@ -14,6 +14,8 @@ class User {
     this.followers,
     this.following,
   });
+
+
 }
 
 class Followers {

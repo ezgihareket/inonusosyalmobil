@@ -23,6 +23,33 @@ class Post {
     this.comment,
   });
 
+ /* Post(String image, String username,String profileImage,DateTime timestamp,String likes, String comments,String description,String location,List<Comment> comment){
+this.image=image;
+this.username=username;
+this.profileImage=profileImage;
+this.timestamp=timestamp;
+this.likes=likes;
+this.comments=comments;
+this.description=description;
+this.location=location;
+this.comment=comment;
+  }
+
+  Post.fromJson(Map json){
+    image = json["image"];
+    username = json["username"];
+    profileImage = json["profileImage"];
+    timestamp = json["timestamp"];
+    likes = json["likes"];
+    comments = json["comments"];
+    description = json["description"];
+    comment = json["comment"];
+  }
+
+  Map toJson(){
+    return {"image":image, "username":username, "profileImage":profileImage, "timestamp":timestamp, "likes":likes, "comments":comments, "description":description, "comment":comment};
+  }*/
+
 
 }
 

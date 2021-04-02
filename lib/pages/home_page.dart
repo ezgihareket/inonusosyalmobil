@@ -2,6 +2,7 @@
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_reaction_button/flutter_reaction_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:insta_ui_kit/config/colors.dart';
 import 'package:insta_ui_kit/models/post.dart';
@@ -89,6 +90,8 @@ class _HomePageState extends State<HomePage>
           scrollDirection: Axis.vertical,
           child: Column(
             children: <Widget>[
+
+
               //*****!!!***********************************************************
               /*Container(
                 height: 100.0,

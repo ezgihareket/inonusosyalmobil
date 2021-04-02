@@ -5,16 +5,16 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:insta_ui_kit/config/colors.dart';
-import 'package:insta_ui_kit/models/store.dart';
-import 'package:insta_ui_kit/screens/store/store_product_screen.dart';
-import 'package:insta_ui_kit/widgets/store/store_product_item.dart';
+import 'package:insta_ui_kit/models/group.dart';
+import 'package:insta_ui_kit/screens/group/group_product_screen.dart';
+import 'package:insta_ui_kit/widgets/group/group_product_item.dart';
 
-class StoreScreen extends StatefulWidget {
+class GroupScreen extends StatefulWidget {
   @override
-  _StoreScreenState createState() => _StoreScreenState();
+  _GroupScreenState createState() => _GroupScreenState();
 }
 
-class _StoreScreenState extends State<StoreScreen> {
+class _GroupScreenState extends State<GroupScreen> {
   List tabs = [
     {
       'name': 'Bilgisayar',
@@ -29,7 +29,7 @@ class _StoreScreenState extends State<StoreScreen> {
       'name': 'Elektrik Elektronik',
     },
   ];
-  List stores = [
+  List groups = [
     {
       'icon': Icons.computer,
       'name': 'Algoritma Analizi',
@@ -187,10 +187,10 @@ class _StoreScreenState extends State<StoreScreen> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Icon(
-                              stores[index]['icon'],
+                              groups[index]['icon'],
                             ),
                             Text(
-                              stores[index]['name'],
+                              groups[index]['name'],
                               style: GoogleFonts.muli(
                                 color: Colors.black,
                                 fontSize: 13.5,
@@ -204,7 +204,7 @@ class _StoreScreenState extends State<StoreScreen> {
                     separatorBuilder: (context, index) => SizedBox(
                       width: 10,
                     ),
-                    itemCount: stores.length,
+                    itemCount: groups.length,
                   ),
                 ),
                 SizedBox(
@@ -237,13 +237,13 @@ class _StoreScreenState extends State<StoreScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => StoreProductScreen(
-                                storeProduct: storeProducts[index],
+                              builder: (context) => GroupProductScreen(
+                                groupProduct: groupProducts[index],
                               ),
                             ));
                       },
-                      child: StoreProductItem(
-                        storeProduct: storeProducts[index],
+                      child: GroupProductItem(
+                        groupProduct: groupProducts[index],
                       ),
                     ),
                   ),
@@ -253,7 +253,7 @@ class _StoreScreenState extends State<StoreScreen> {
                     mainAxisSpacing: 15,
                     childAspectRatio: 0.8,
                   ),
-                  itemCount: storeProducts.length,
+                  itemCount: groupProducts.length,
                 ),
               ],
             ),

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:insta_ui_kit/config/colors.dart';
-import 'package:insta_ui_kit/screens/store/store_screen.dart';
+import 'package:insta_ui_kit/screens/group/group_screen.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -164,7 +164,7 @@ class _SearchPageState extends State<SearchPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => StoreScreen(),
+                          builder: (context) => GroupScreen(),
                         ),
                       );
                     }

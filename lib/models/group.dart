@@ -1,34 +1,34 @@
-class StoreProduct {
+class GroupProduct {
   String name;
   String rating;
-  String price;
+  String description;
   String image;
 
-  StoreProduct({
+  GroupProduct({
     this.image,
     this.name,
-    this.price,
+    this.description,
     this.rating,
   });
 }
 
-List<StoreProduct> storeProducts = [
-  StoreProduct(
+List<GroupProduct> groupProducts = [
+  GroupProduct(
     image: 'assets/images/questions.jpg',
     name: 'Kurucu: Ali Karcı',
-    price: 'Algoritma Analizi Soruları',
+    description: 'Algoritma Analizi Soruları',
     rating: '',
   ),
-  StoreProduct(
+  GroupProduct(
     image: 'assets/images/notes.jpg',
     name: 'Kurucu: Samet Akbal',
-    price: 'Algoritma Analizi Notlar',
+    description: 'Algoritma Analizi Notlar',
     rating: '',
   ),
-  StoreProduct(
+  GroupProduct(
     image: 'assets/images/help.png',
     name: 'Kurucu: Efdal Akın Barsan',
-    price: 'Algoritma Analizi Yardım',
+    description: 'Algoritma Analizi Yardım',
     rating: '',
   ),
 

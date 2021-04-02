@@ -2,12 +2,14 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_reaction_button/flutter_reaction_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:insta_ui_kit/config/colors.dart';
 import 'package:insta_ui_kit/models/post.dart';
 import 'package:insta_ui_kit/screens/posts/likes_screen.dart';
 import 'package:insta_ui_kit/screens/posts/post_screen.dart';
 import 'package:insta_ui_kit/screens/user_profile/user_profile_screen.dart';
+
 
 class PostItem extends StatelessWidget {
   const PostItem({
@@ -185,14 +187,102 @@ class PostItem extends StatelessWidget {
                               ),
                               child: Row(
                                 children: [
-                                  GestureDetector(
+
+
+                                  FlutterReactionButtonCheck(
+
+                                    onReactionChanged: (reaction, index, isChecked) {
+                                      print('reaction selected index: $index');
+
+                                    },
+                                    reactions: <Reaction>[
+                                      Reaction(
+                                        previewIcon: SizedBox(
+                                          child: Image.asset('assets/images/like.png', height: 30, width: 30),
+                                        ),
+
+                                        icon: SizedBox(
+                                          width: 24.0,
+                                          child: Image.asset('assets/images/like.png'),
+                                        ),
+                                      ),
+
+                                      Reaction(
+                                        previewIcon: SizedBox(
+                                          child: Image.asset('assets/images/heart.png', height: 30, width: 30),
+                                        ),
+                                        icon: SizedBox(
+                                          width: 24.0,
+                                          child: Image.asset('assets/images/heart.png'),
+                                        ),
+                                      ),
+                                      Reaction(
+                                        previewIcon: SizedBox(
+                                          child: Image.asset('assets/images/smile.png', height: 30, width: 30),
+                                        ),
+                                        icon: SizedBox(
+                                          width: 24.0,
+                                          child: Image.asset('assets/images/smile.png'),
+                                        ),
+                                      ),
+                                      Reaction(
+
+                                        previewIcon: SizedBox(
+
+                                          child: Image.asset('assets/images/smiling.png', height: 30, width: 30),
+                                        ),
+                                        icon: SizedBox(
+                                          width: 24.0,
+
+                                          child: Image.asset('assets/images/smiling.png'),
+                                        ),
+                                      ),
+                                      Reaction(
+                                        previewIcon: SizedBox(
+
+
+                                          child: Image.asset('assets/images/thinking.png', height: 30, width: 30),
+                                        ),
+                                        icon: SizedBox(
+                                          width: 24.0,
+
+                                          child: Image.asset('assets/images/thinking.png'),
+                                        ),
+                                      ),
+                                      Reaction(
+                                        previewIcon: SizedBox(
+
+                                          child: Image.asset('assets/images/sad.png', height: 30, width: 30),
+                                        ),
+                                        icon: SizedBox(
+                                          width: 24.0,
+                                          child: Image.asset('assets/images/sad.png'),
+                                        ),
+                                      ),
+                                    ],
+                                    initialReaction: Reaction(
+                                        icon: Icon(Icons.favorite_border)
+                                    ),
+                                    selectedReaction: Reaction(
+                                      icon: SizedBox(
+                                        width: 24.0,
+                                        height: 24.0,
+                                        child: Icon(Icons.favorite_border,
+                                          color: Colors.black,
+                                          size: 24.0,),
+                                      ),
+                                    ),
+                                  ),
+
+                               /* GestureDetector(
                                     onTap: () {},
                                     child: Icon(
                                       Icons.favorite_border,
                                       color: Colors.black,
                                       size: 24.0,
                                     ),
-                                  ),
+                                  ),*/
+
                                   SizedBox(
                                     width: 8.0,
                                   ),
@@ -205,7 +295,9 @@ class PostItem extends StatelessWidget {
                                     ),
                                   ),
                                 ],
+
                               ),
+
                             ),
                           ),
                           SizedBox(

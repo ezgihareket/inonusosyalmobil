@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:insta_ui_kit/config/colors.dart';
-import 'package:insta_ui_kit/models/store.dart';
+import 'package:insta_ui_kit/models/group.dart';
 
-class StoreProductItem extends StatelessWidget {
-  final StoreProduct storeProduct;
-  const StoreProductItem({
+class GroupProductItem extends StatelessWidget {
+  final GroupProduct groupProduct;
+  const GroupProductItem({
     Key key,
-    this.storeProduct,
+    this.groupProduct,
   }) : super(key: key);
 
   @override
@@ -32,7 +32,7 @@ class StoreProductItem extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(17),
                child: Image.asset(
-                  storeProduct.image,
+                  groupProduct.image,
                   fit: BoxFit.cover,
                   width: double.infinity,
                 ),
@@ -50,7 +50,7 @@ class StoreProductItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  storeProduct.price,
+                  groupProduct.description,
                   style: GoogleFonts.muli(
                     color: Colors.black,
                     fontSize: 13.5,
@@ -76,7 +76,7 @@ class StoreProductItem extends StatelessWidget {
               horizontal: 5,
             ),
             child: Text(
-              storeProduct.name,
+              groupProduct.name,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: GoogleFonts.muli(
