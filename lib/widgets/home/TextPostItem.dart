@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_reaction_button/flutter_reaction_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:insta_ui_kit/config/colors.dart';
 import 'package:insta_ui_kit/models/textpost.dart';
@@ -203,13 +204,114 @@ class TextPostItem extends StatelessWidget {
                               ),
                               child: Row(
                                 children: [
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: Icon(
-                                      Icons.favorite_border,
-                                      color: Colors.black,
-                                      size: 24.0,
+                                  FlutterReactionButton(
+                                    onReactionChanged:
+                                        (reaction, index) {
+                                      print('reaction selected index: $index');
+                                    },
+                                    reactions: <Reaction>[
+                                      Reaction(
+                                        previewIcon: SizedBox(
+                                          child: Image.asset(
+                                              'assets/images/like.png',
+                                              height: 30,
+                                              width: 30),
+                                        ),
+                                        icon: SizedBox(
+                                          width: 24.0,
+                                          child: Image.asset(
+                                              'assets/images/like.png'),
+                                        ),
+                                      ),
+                                      Reaction(
+                                        previewIcon: SizedBox(
+                                          child: Image.asset(
+                                              'assets/images/heart.png',
+                                              height: 30,
+                                              width: 30),
+                                        ),
+                                        icon: SizedBox(
+                                          width: 24.0,
+                                          child: Image.asset(
+                                              'assets/images/heart.png'),
+                                        ),
+                                      ),
+                                      Reaction(
+                                        previewIcon: SizedBox(
+                                          child: Image.asset(
+                                              'assets/images/smile.png',
+                                              height: 30,
+                                              width: 30),
+                                        ),
+                                        icon: SizedBox(
+                                          width: 24.0,
+                                          child: Image.asset(
+                                              'assets/images/smile.png'),
+                                        ),
+                                      ),
+                                      Reaction(
+                                        previewIcon: SizedBox(
+                                          child: Image.asset(
+                                              'assets/images/smiling.png',
+                                              height: 30,
+                                              width: 30),
+                                        ),
+                                        icon: SizedBox(
+                                          width: 24.0,
+                                          child: Image.asset(
+                                              'assets/images/smiling.png'),
+                                        ),
+                                      ),
+                                      Reaction(
+                                        previewIcon: SizedBox(
+                                          child: Image.asset(
+                                              'assets/images/thinking.png',
+                                              height: 30,
+                                              width: 30),
+                                        ),
+                                        icon: SizedBox(
+                                          width: 24.0,
+                                          child: Image.asset(
+                                              'assets/images/thinking.png'),
+                                        ),
+                                      ),
+                                      Reaction(
+                                        previewIcon: SizedBox(
+                                          child: Image.asset(
+                                              'assets/images/sad.png',
+                                              height: 30,
+                                              width: 30),
+                                        ),
+                                        icon: SizedBox(
+                                          width: 24.0,
+                                          child: Image.asset(
+                                              'assets/images/sad.png'),
+                                        ),
+                                      ),
+                                    ],
+                                    initialReaction: Reaction(
+                                      icon: SizedBox(
+                                        width: 24.0,
+                                        height: 24.0,
+                                        child: Icon(
+                                          Icons.favorite_border,
+                                          color: Colors.black,
+                                          size: 24.0,
+                                        ),
+                                      ),
+
                                     ),
+                                    /*selectedReaction: Reaction(
+                                      icon: SizedBox(
+                                        width: 24.0,
+                                        height: 24.0,
+                                        child: Icon(
+                                          Icons.favorite_border,
+                                          color: Colors.black,
+                                          size: 24.0,
+                                        ),
+                                      ),
+                                    ),*/
                                   ),
                                   SizedBox(
                                     width: 8.0,

@@ -7,6 +7,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:insta_ui_kit/config/colors.dart';
 import 'package:insta_ui_kit/screens/group/group_screen.dart';
+import 'package:insta_ui_kit/screens/profile/followers_screen.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -30,10 +31,7 @@ class _SearchPageState extends State<SearchPage> {
   ];
 
   List tabs = [
-    {
-      'icon': Icons.group_add,
-      'name': 'Gruplar',
-    },
+
     {
       'icon': Icons.person,
       'name': 'Kişiler',
@@ -164,7 +162,7 @@ class _SearchPageState extends State<SearchPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => GroupScreen(),
+                          builder: (context) => FollowersScreen(),
                         ),
                       );
                     }

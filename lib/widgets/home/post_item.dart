@@ -10,7 +10,6 @@ import 'package:insta_ui_kit/screens/posts/likes_screen.dart';
 import 'package:insta_ui_kit/screens/posts/post_screen.dart';
 import 'package:insta_ui_kit/screens/user_profile/user_profile_screen.dart';
 
-
 class PostItem extends StatelessWidget {
   const PostItem({
     Key key,
@@ -187,94 +186,117 @@ class PostItem extends StatelessWidget {
                               ),
                               child: Row(
                                 children: [
-
-
-                                  FlutterReactionButtonCheck(
-
-                                    onReactionChanged: (reaction, index, isChecked) {
+                                  FlutterReactionButton(
+                                    onReactionChanged:
+                                        (reaction, index) {
                                       print('reaction selected index: $index');
-
                                     },
                                     reactions: <Reaction>[
                                       Reaction(
                                         previewIcon: SizedBox(
-                                          child: Image.asset('assets/images/like.png', height: 30, width: 30),
-                                        ),
-
-                                        icon: SizedBox(
-                                          width: 24.0,
-                                          child: Image.asset('assets/images/like.png'),
-                                        ),
-                                      ),
-
-                                      Reaction(
-                                        previewIcon: SizedBox(
-                                          child: Image.asset('assets/images/heart.png', height: 30, width: 30),
+                                          child: Image.asset(
+                                              'assets/images/like.png',
+                                              height: 30,
+                                              width: 30),
                                         ),
                                         icon: SizedBox(
                                           width: 24.0,
-                                          child: Image.asset('assets/images/heart.png'),
+                                          child: Image.asset(
+                                              'assets/images/like.png'),
                                         ),
                                       ),
                                       Reaction(
                                         previewIcon: SizedBox(
-                                          child: Image.asset('assets/images/smile.png', height: 30, width: 30),
+                                          child: Image.asset(
+                                              'assets/images/heart.png',
+                                              height: 30,
+                                              width: 30),
                                         ),
                                         icon: SizedBox(
                                           width: 24.0,
-                                          child: Image.asset('assets/images/smile.png'),
-                                        ),
-                                      ),
-                                      Reaction(
-
-                                        previewIcon: SizedBox(
-
-                                          child: Image.asset('assets/images/smiling.png', height: 30, width: 30),
-                                        ),
-                                        icon: SizedBox(
-                                          width: 24.0,
-
-                                          child: Image.asset('assets/images/smiling.png'),
+                                          child: Image.asset(
+                                              'assets/images/heart.png'),
                                         ),
                                       ),
                                       Reaction(
                                         previewIcon: SizedBox(
-
-
-                                          child: Image.asset('assets/images/thinking.png', height: 30, width: 30),
+                                          child: Image.asset(
+                                              'assets/images/smile.png',
+                                              height: 30,
+                                              width: 30),
                                         ),
                                         icon: SizedBox(
                                           width: 24.0,
-
-                                          child: Image.asset('assets/images/thinking.png'),
+                                          child: Image.asset(
+                                              'assets/images/smile.png'),
                                         ),
                                       ),
                                       Reaction(
                                         previewIcon: SizedBox(
-
-                                          child: Image.asset('assets/images/sad.png', height: 30, width: 30),
+                                          child: Image.asset(
+                                              'assets/images/smiling.png',
+                                              height: 30,
+                                              width: 30),
                                         ),
                                         icon: SizedBox(
                                           width: 24.0,
-                                          child: Image.asset('assets/images/sad.png'),
+                                          child: Image.asset(
+                                              'assets/images/smiling.png'),
+                                        ),
+                                      ),
+                                      Reaction(
+                                        previewIcon: SizedBox(
+                                          child: Image.asset(
+                                              'assets/images/thinking.png',
+                                              height: 30,
+                                              width: 30),
+                                        ),
+                                        icon: SizedBox(
+                                          width: 24.0,
+                                          child: Image.asset(
+                                              'assets/images/thinking.png'),
+                                        ),
+                                      ),
+                                      Reaction(
+                                        previewIcon: SizedBox(
+                                          child: Image.asset(
+                                              'assets/images/sad.png',
+                                              height: 30,
+                                              width: 30),
+                                        ),
+                                        icon: SizedBox(
+                                          width: 24.0,
+                                          child: Image.asset(
+                                              'assets/images/sad.png'),
                                         ),
                                       ),
                                     ],
                                     initialReaction: Reaction(
-                                        icon: Icon(Icons.favorite_border)
-                                    ),
-                                    selectedReaction: Reaction(
                                       icon: SizedBox(
                                         width: 24.0,
                                         height: 24.0,
-                                        child: Icon(Icons.favorite_border,
+                                        child: Icon(
+                                          Icons.favorite_border,
                                           color: Colors.black,
-                                          size: 24.0,),
+                                          size: 24.0,
+                                        ),
                                       ),
+
                                     ),
+                                    /*selectedReaction: Reaction(
+                                      icon: SizedBox(
+                                        width: 24.0,
+                                        height: 24.0,
+                                        child: Icon(
+                                          Icons.favorite_border,
+                                          color: Colors.black,
+                                          size: 24.0,
+                                        ),
+                                      ),
+                                    ),*/
                                   ),
 
-                               /* GestureDetector(
+                                  /* GestureDetector(
                                     onTap: () {},
                                     child: Icon(
                                       Icons.favorite_border,
@@ -295,9 +317,7 @@ class PostItem extends StatelessWidget {
                                     ),
                                   ),
                                 ],
-
                               ),
-
                             ),
                           ),
                           SizedBox(
@@ -378,7 +398,7 @@ class PostItem extends StatelessWidget {
                         child: Text(
                           'Daha Fazla...',
                           style: GoogleFonts.muli(
-                            color: Colors.black,
+                            color: Colors.black45,
                             fontSize: 13.5,
                             fontWeight: FontWeight.w600,
                           ),

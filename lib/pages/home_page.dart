@@ -4,15 +4,21 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_reaction_button/flutter_reaction_button.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hovering/hovering.dart';
 import 'package:insta_ui_kit/config/colors.dart';
+import 'package:insta_ui_kit/dtos/login_dto.dart';
+import 'package:insta_ui_kit/models/current_user.dart';
 import 'package:insta_ui_kit/models/post.dart';
 import 'package:insta_ui_kit/models/textpost.dart';
 import 'package:insta_ui_kit/models/user.dart';
+import 'package:insta_ui_kit/pages/create_post_container.dart';
 import 'package:insta_ui_kit/pages/profile_page.dart';
 import 'package:insta_ui_kit/pages/search_page.dart';
+import 'package:insta_ui_kit/screens/group/group_screen.dart';
 import 'package:insta_ui_kit/screens/messages/messages_screen.dart';
 import 'package:insta_ui_kit/widgets/home/TextPostItem.dart';
 import 'package:insta_ui_kit/widgets/home/post_item.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'activity_page.dart';
 
@@ -23,6 +29,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin<HomePage> {
+  /*void getValues() async{
+    print('Get values');
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String username = sharedPreferences.getString('username');
+    String password = sharedPreferences.getString('password');
+
+    print('username: ${username}');
+    print('password: ${password}');
+  }*/
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -60,7 +76,25 @@ class _HomePageState extends State<HomePage>
               },
             ),
           ),*/
-
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 6.0),
+            child: IconButton(
+              icon: Icon(
+                Icons.group_add,
+                color: kMediumBlack,
+              ),
+              tooltip: 'Gruplar',
+              onPressed: () {
+                print('group');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => GroupScreen(),
+                  ),
+                );
+              },
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 6.0),
             child: IconButton(
@@ -81,23 +115,27 @@ class _HomePageState extends State<HomePage>
           ),
         ],
       ),
+
+
+
       body: RefreshIndicator(
         onRefresh: () async {
           return null;
         },
         displacement: size.height * 0.1,
         child: SingleChildScrollView(
+
           scrollDirection: Axis.vertical,
           child: Column(
             children: <Widget>[
-
-
+              CreatePostContainer(currentUser: currentUser),
               //*****!!!***********************************************************
               /*Container(
                 height: 100.0,
+                color: Colors.red,
                 width: size.width,
                 padding: EdgeInsets.all(0),
-                child: ListView.builder(
+                /*child: ListView.builder(
                   padding: EdgeInsets.symmetric(horizontal: 10.0),
                   itemCount: users.length,
                   scrollDirection: Axis.horizontal,
@@ -186,7 +224,7 @@ class _HomePageState extends State<HomePage>
                       ),
                     );
                   },
-                ),
+                ),*/
               ),*/
               //*****!!!*******************************************************************
               SizedBox(

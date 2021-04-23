@@ -2,12 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:insta_ui_kit/apis/api_service.dart';
 import 'package:insta_ui_kit/config/colors.dart';
 import 'package:insta_ui_kit/config/styles.dart';
-import 'package:insta_ui_kit/pages/home_page.dart';
-import 'package:insta_ui_kit/screens/sign_up/sign_up_screen.dart';
 
 import '../main_home.dart';
+
+
+
 
 class SignInScreen extends StatefulWidget {
   @override
@@ -15,13 +17,33 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool hidePassword = true;
+  final _formKey = GlobalKey<FormState>();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+  String message = '';
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  /*void setValues() async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString('username', usernameController.text);
+    sharedPreferences.setString('password', passwordController.text);
+    print('Shared preff');
+  }*/
+
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
     return Scaffold(
+      key: scaffoldKey,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 0),
@@ -29,7 +51,7 @@ class _SignInScreenState extends State<SignInScreen> {
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: <Widget>[
                 BackButton(),
                 SizedBox(
                   height: 15,
@@ -59,19 +81,17 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: 15,
                 ),
                 TextFormField(
+                  controller: usernameController,
                   textAlignVertical: TextAlignVertical.center,
-                  validator: (String val) {
-                    if (val.trim().isEmpty) {
-                      return 'Email Gerekli';
-                    }
-                    return null;
-                  },
-                  onSaved: (val) {},
+                  validator: (input) => !input.contains("@")
+                      ? "Geçerli Inönü Maili Olmalıdır"
+                      : null,
+                  onSaved: (input) {},
                   onChanged: (value) {},
                   enableInteractiveSelection: true,
                   style: kInputStyle,
                   textInputAction: TextInputAction.done,
-                  keyboardType: TextInputType.text,
+                  keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     contentPadding:
                         EdgeInsets.symmetric(horizontal: 15, vertical: 14),
@@ -96,20 +116,29 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 TextFormField(
                   textAlignVertical: TextAlignVertical.center,
-                  validator: (String val) {
-                    if (val.trim().isEmpty) {
-                      return 'Şifre Gerekli';
-                    }
-                    return null;
-                  },
-                  onSaved: (val) {},
+                  onSaved: (input) {},
+                  controller: passwordController,
+                  validator: (input) => input.length < 3
+                      ? "Şifre 3 Karakterden Uzun Olmalıdır"
+                      : null,
+                  obscureText: hidePassword,
                   onChanged: (value) {},
                   enableInteractiveSelection: true,
-                  obscureText: true,
                   style: kInputStyle,
                   textInputAction: TextInputAction.done,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          hidePassword = !hidePassword;
+                        });
+                      },
+                      color: Theme.of(context).accentColor.withOpacity(0.4),
+                      icon: Icon(hidePassword
+                          ? Icons.visibility_off
+                          : Icons.visibility),
+                    ),
                     contentPadding:
                         EdgeInsets.symmetric(horizontal: 15, vertical: 14),
                     helperStyle: kInputHintStyle,
@@ -135,13 +164,48 @@ class _SignInScreenState extends State<SignInScreen> {
                   width: size.width,
                   height: 45,
                   child: FlatButton(
-                    onPressed: () {
-                      Navigator.push(
+                    onPressed: () async {
+                      if (_formKey.currentState.validate()) {
+                        debugPrint(passwordController.text);
+                        var username = usernameController.text;
+                        var password = passwordController.text;
+
+                        setState(() {
+                          //message = "Lütfen Bekleyin..";
+                          final snackBar = SnackBar(content: Text('Lütfen Bekleyin..'),
+                            duration: Duration(milliseconds: 800),);
+                          scaffoldKey.currentState.showSnackBar(snackBar);
+                        });
+
+                       APIService apiservice = APIService();
+                        var rsp = await apiservice.loginUser(username, password);
+                        print(rsp);
+                        if (rsp != null) {
+                          setState(() {
+                            message = "Giriş Başarılı";
+                          });
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MainHome(),
+                            ),
+                          );
+                        } else {
+                          setState(() {
+                            //message = "Giriş Başarısız";
+                             final snackBar = SnackBar(content: Text('Giriş Başarısız!!'),
+                              duration: Duration(milliseconds: 800),);
+                            scaffoldKey.currentState.showSnackBar(snackBar);
+                          });
+                        }
+                      }
+
+                      /*Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => MainHome(),
                         ),
-                      );
+                      );*/
                     },
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -160,6 +224,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                 ),
                 Spacer(),
+                Text(message),
                 Center(
                   child: Container(
                     height: 45,

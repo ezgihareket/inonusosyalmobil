@@ -1,3 +1,4 @@
+
 class User {
   String bio;
   String fullName;
@@ -16,7 +17,32 @@ class User {
   });
 
 
+  User.fromJson(Map<String, dynamic> json){
+    bio=json['bio'];
+    fullName=json['fullName'];
+    profileImage=json['profileImage'];
+    username=json['username'];
+    followers=json['followers'];
+    following=json['following'];
+  }
+
+  Map<String, dynamic> toJson(){
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['bio']=this.bio;
+    data['fullName']=this.fullName;
+    data['profileImage']=this.profileImage;
+    data['username']=this.username;
+    data['followers']=this.followers;
+    data['following']=this.following;
+    return data;
+  }
+
+
 }
+
+
+
+
 
 class Followers {
   bool following;
@@ -60,6 +86,7 @@ class Following {
     );
   }
 }
+
 
 List<User> users = [
   User(

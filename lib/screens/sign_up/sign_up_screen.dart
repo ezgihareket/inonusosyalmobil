@@ -4,16 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:insta_ui_kit/config/colors.dart';
 import 'package:insta_ui_kit/config/styles.dart';
+import 'package:insta_ui_kit/models/user.dart';
 import 'package:insta_ui_kit/screens/main_home.dart';
+import 'package:http/http.dart' as http;
 
 class SignUpScreen extends StatefulWidget {
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }
 
+
 class _SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  //RegisterDto _registerDto = RegisterDto();
 
+  TextEditingController usernameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -63,6 +68,82 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     TextFormField(
                       textAlignVertical: TextAlignVertical.center,
+
+                      validator: (String val) {
+                        if (val.trim().isEmpty) {
+                          return 'İsim Gerekli';
+                        }
+                        return null;
+                      },
+                      onSaved: (val) {},
+                      onChanged: (value) {},
+                      enableInteractiveSelection: true,
+                      style: kInputStyle,
+                      textInputAction: TextInputAction.done,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 14),
+                        helperStyle: kInputHintStyle,
+                        errorStyle: kInputHintStyle,
+                        hintStyle: kInputHintStyle,
+                        labelText: 'İsim',
+                        labelStyle: kInputHintStyle,
+                        fillColor: kWhite,
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                          borderSide:
+                              BorderSide(color: Colors.black38, width: 0.3),
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    TextFormField(
+                      textAlignVertical: TextAlignVertical.center,
+                      validator: (String val) {
+                        if (val.trim().isEmpty) {
+                          return 'Soyad Gerekli';
+                        }
+                        return null;
+                      },
+                      onSaved: (val) {},
+                      onChanged: (value) {},
+                      enableInteractiveSelection: true,
+                      style: kInputStyle,
+                      textInputAction: TextInputAction.done,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 14),
+                        helperStyle: kInputHintStyle,
+                        errorStyle: kInputHintStyle,
+                        hintStyle: kInputHintStyle,
+                        labelText: 'Soyad',
+                        labelStyle: kInputHintStyle,
+                        fillColor: kWhite,
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                          borderSide:
+                              BorderSide(color: Colors.black38, width: 0.3),
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    TextFormField(
+
+                      textAlignVertical: TextAlignVertical.center,
                       validator: (String val) {
                         if (val.trim().isEmpty) {
                           return 'Kullanıcı Adı Gerekli';
@@ -99,10 +180,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 15,
                     ),
                     TextFormField(
+                      controller: usernameController,
                       textAlignVertical: TextAlignVertical.center,
                       validator: (String val) {
                         if (val.trim().isEmpty) {
-                          return 'Email Adresi Gerekli';
+                          return 'İnönü Maili Gerekli';
                         }
                         return null;
                       },
@@ -118,118 +200,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         helperStyle: kInputHintStyle,
                         errorStyle: kInputHintStyle,
                         hintStyle: kInputHintStyle,
-                        labelText: 'Email Adresi',
-                        labelStyle: kInputHintStyle,
-                        fillColor: kWhite,
-                        filled: true,
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                          borderSide:
-                              BorderSide(color: Colors.black38, width: 0.3),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    TextFormField(
-                      textAlignVertical: TextAlignVertical.center,
-                      validator: (String val) {
-                        if (val.trim().isEmpty) {
-                          return 'Tam Adı Gerekli';
-                        }
-                        return null;
-                      },
-                      onSaved: (val) {},
-                      onChanged: (value) {},
-                      enableInteractiveSelection: true,
-                      style: kInputStyle,
-                      textInputAction: TextInputAction.done,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 14),
-                        helperStyle: kInputHintStyle,
-                        errorStyle: kInputHintStyle,
-                        hintStyle: kInputHintStyle,
-                        labelText: 'Tam Adı',
-                        labelStyle: kInputHintStyle,
-                        fillColor: kWhite,
-                        filled: true,
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                          borderSide:
-                              BorderSide(color: Colors.black38, width: 0.3),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    TextFormField(
-                      textAlignVertical: TextAlignVertical.center,
-                      validator: (String val) {
-                        if (val.trim().isEmpty) {
-                          return 'Bio gerekli';
-                        }
-                        return null;
-                      },
-                      onSaved: (val) {},
-                      onChanged: (value) {},
-                      enableInteractiveSelection: true,
-                      style: kInputStyle,
-                      textInputAction: TextInputAction.done,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 14),
-                        helperStyle: kInputHintStyle,
-                        errorStyle: kInputHintStyle,
-                        hintStyle: kInputHintStyle,
-                        labelText: 'Bio',
-                        labelStyle: kInputHintStyle,
-                        fillColor: kWhite,
-                        filled: true,
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                          borderSide:
-                              BorderSide(color: Colors.black38, width: 0.3),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    TextFormField(
-                      textAlignVertical: TextAlignVertical.center,
-                      validator: (String val) {
-                        if (val.trim().isEmpty) {
-                          return 'Yaş Gerekli';
-                        }
-                        return null;
-                      },
-                      onSaved: (val) {},
-                      onChanged: (value) {},
-                      enableInteractiveSelection: true,
-                      style: kInputStyle,
-                      textInputAction: TextInputAction.done,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 14),
-                        helperStyle: kInputHintStyle,
-                        errorStyle: kInputHintStyle,
-                        hintStyle: kInputHintStyle,
-                        labelText: 'Yaş',
+                        labelText: 'İnönü Maili',
                         labelStyle: kInputHintStyle,
                         fillColor: kWhite,
                         filled: true,
@@ -257,10 +228,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       onSaved: (val) {},
                       onChanged: (value) {},
                       enableInteractiveSelection: true,
-                      obscureText: true,
                       style: kInputStyle,
                       textInputAction: TextInputAction.done,
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         contentPadding:
                             EdgeInsets.symmetric(horizontal: 15, vertical: 14),
@@ -282,6 +252,82 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                     SizedBox(
+                      height: 15,
+                    ),
+                    TextFormField(
+                      textAlignVertical: TextAlignVertical.center,
+                      validator: (String val) {
+                        if (val.trim().isEmpty) {
+                          return 'Telefon Gerekli';
+                        }
+                        return null;
+                      },
+                      onSaved: (val) {},
+                      onChanged: (value) {},
+                      enableInteractiveSelection: true,
+                      obscureText: true,
+                      style: kInputStyle,
+                      textInputAction: TextInputAction.done,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 14),
+                        helperStyle: kInputHintStyle,
+                        errorStyle: kInputHintStyle,
+                        hintStyle: kInputHintStyle,
+                        labelText: 'Telefon',
+                        labelStyle: kInputHintStyle,
+                        fillColor: kWhite,
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                          borderSide:
+                              BorderSide(color: Colors.black38, width: 0.3),
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      textAlignVertical: TextAlignVertical.center,
+                      validator: (String val) {
+                        if (val.trim().isEmpty) {
+                          return 'Cinsiyet Gerekli';
+                        }
+                        return null;
+                      },
+                      onSaved: (val) {},
+                      onChanged: (value) {},
+                      enableInteractiveSelection: true,
+                      obscureText: true,
+                      style: kInputStyle,
+                      textInputAction: TextInputAction.done,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        contentPadding:
+                        EdgeInsets.symmetric(horizontal: 15, vertical: 14),
+                        helperStyle: kInputHintStyle,
+                        errorStyle: kInputHintStyle,
+                        hintStyle: kInputHintStyle,
+                        labelText: 'Cinsiyet',
+                        labelStyle: kInputHintStyle,
+                        fillColor: kWhite,
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                          borderSide:
+                          BorderSide(color: Colors.black38, width: 0.3),
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
                       height: 20,
                     ),
                     Container(
@@ -289,7 +335,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 45,
                       child: FlatButton(
                         onPressed: () {
-                          Navigator.pushAndRemoveUntil(
+                        Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
                               builder: (context) => MainHome(),
@@ -312,10 +358,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                       ),
+
                     ),
                     SizedBox(
                       height: 25,
+
                     ),
+
+
                     Center(
                       child: Container(
                         height: 45,
@@ -347,4 +397,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
+
+  //void registerUser(){}
 }

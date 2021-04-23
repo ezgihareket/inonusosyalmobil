@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:insta_ui_kit/config/themes.dart';
+import 'package:insta_ui_kit/pages/home_page.dart';
+import 'package:insta_ui_kit/screens/main_home.dart';
 import 'package:insta_ui_kit/screens/sign_up/main_sign_in_screen.dart';
+import 'package:insta_ui_kit/screens/sign_up/sign_in_screen.dart';
 import 'package:provider/provider.dart';
 import 'theme/theme.dart';
 
-void main() {
+
+void main() async{
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -36,7 +43,7 @@ class MainMaterialApp extends StatelessWidget {
       title: 'Insta UI Kit',
       debugShowCheckedModeBanner: false,
       theme: theme.getTheme(),
-      home: MainSignInScreen(),
+     home: MainSignInScreen(),
     );
   }
 }
