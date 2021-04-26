@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 const Color kWhite = Color(0xFFFFFFFF);
 const Color kOffWhite = Color(0xFFFEFEFE);
@@ -9,4 +10,5 @@ const Color kLightBlack = Color(0xFFACADAF);
 const Color kColorPrimary = Color(0xFF006FFF);
 const Color kColorPrimaryLight = Color(0xFF318BFF);
 const Color kDarkBlack = Color(0xFF040303);
+Color kError= HexColor("#f75c5c");
 const Color kMediumBlack = Colors.black54;

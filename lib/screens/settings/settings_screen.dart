@@ -5,6 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:insta_ui_kit/config/colors.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:insta_ui_kit/screens/sign_up/main_sign_in_screen.dart';
+import 'package:insta_ui_kit/screens/sign_up/sign_in_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
   @override
@@ -269,6 +271,52 @@ class _SettingsScreen extends State<SettingsScreen> {
                         ),
                       ),
                     ],
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Container(
+                  height: 50.0,
+                  decoration: BoxDecoration(
+                    color: kWhite,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                  child: FlatButton(
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignInScreen(),
+                        ),
+                            (context) => false,
+                      );
+                    },
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.logout,
+                          color: kDarkBlack,
+                          size: 22.0,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Çıkış',
+                          style: GoogleFonts.muli(
+                            color: Colors.black87,
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 // SizedBox(

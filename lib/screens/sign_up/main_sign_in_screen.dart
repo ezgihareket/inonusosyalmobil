@@ -243,19 +243,37 @@ class _MainSignInScreenState extends State<MainSignInScreen> {
                         borderRadius: BorderRadius.circular(16),
                       ),
                       color: Colors.transparent,
-                      child: Text(
-                        'Hesabın Yok mu? Şimdi Kayıt Ol',
-                        style: GoogleFonts.muli(
-                          color: Colors.black38,
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w600,
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'Hesabın Yok mu? ',
+                              style: GoogleFonts.muli(
+                                color: Colors.black38,
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+
+                            TextSpan(
+                              text: 'Şimdi Kayıt Ol',
+                              style: GoogleFonts.muli(
+                                color: kColorPrimary,
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ]
                         ),
+
                       ),
+
                     ),
                   ),
                   SizedBox(
                     height: 5,
                   ),
+
                 ],
               ),
             ),
